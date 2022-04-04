@@ -43,3 +43,7 @@
             });
 
             document.querySelector("form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+                socket.emit('sendMessage', {name: event.target[0].value, message: event.target[1].value})
+                event.target[0].value = "";
