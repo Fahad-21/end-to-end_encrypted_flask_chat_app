@@ -57,3 +57,5 @@
 
             socket.on('message', (msgs) => {
                 for(msg of msgs) {
+                  addToChat(msg)
+                }
