@@ -1,10 +1,2 @@
-from flask import Flask, render_template
-
-app = Flask(_name_)
-
-@app.route('/', methods=['GET', 'POST'])
-def home():
-    return render_template('index.html')
-
-if _name_ == '_main_':
-    app.run(debug=True)
+from flask import Flask, render_template, request, redirect, url_for
+from flask_mail import Mail,Message
