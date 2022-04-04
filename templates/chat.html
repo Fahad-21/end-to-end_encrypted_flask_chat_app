@@ -47,3 +47,7 @@
 
                 socket.emit('sendMessage', {name: event.target[0].value, message: event.target[1].value})
                 event.target[0].value = "";
+                event.target[1].value = "";
+            })
+
+            socket.on('getMessage', (msg) => {
