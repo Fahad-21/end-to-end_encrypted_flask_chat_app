@@ -35,3 +35,7 @@
              const span = document.createElement("span");
                 const chat = document.querySelector(".chat");
                 span.innerHTML = `<strong>${msg.name}:</strong> ${msg.message}`;
+                 chat.append(span);
+            }
+
+            socket.on('connect', () => {
