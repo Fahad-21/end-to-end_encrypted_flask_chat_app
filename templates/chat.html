@@ -39,3 +39,7 @@
             }
 
             socket.on('connect', () => {
+             socket.send('connected to socket successfully')
+            });
+
+            document.querySelector("form").addEventListener("submit", function(event) {
