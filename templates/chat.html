@@ -32,3 +32,6 @@
             socket.connect("http://127.0.0.1:5000")
 
              function addToChat(msg) {
+             const span = document.createElement("span");
+                const chat = document.querySelector(".chat");
+                span.innerHTML = `<strong>${msg.name}:</strong> ${msg.message}`;
