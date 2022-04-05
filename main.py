@@ -17,3 +17,5 @@ app.config["MAIL_USERNAME"] = my_addr
 app.config['MAIL_PASSWORD'] = 'Pak=12345'                   #you have to give your password of gmail account
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
+mail = Mail(app)
+otp = randint(000000,999999)
