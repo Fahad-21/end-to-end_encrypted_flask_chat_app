@@ -8,3 +8,5 @@ import io as k
 key = ''
 bufferSize = 64 * 1024
 password = "please-use-a-long-and-random-password"
+app = Flask(__name__, template_folder='templates')
+mail = Mail(app)
