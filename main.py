@@ -14,3 +14,6 @@ my_addr = 'verifytext7@gmail.com'
 app.config["MAIL_SERVER"] = 'smtp.gmail.com'
 app.config["MAIL_PORT"] = 465
 app.config["MAIL_USERNAME"] = my_addr
+app.config['MAIL_PASSWORD'] = 'Pak=12345'                   #you have to give your password of gmail account
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
