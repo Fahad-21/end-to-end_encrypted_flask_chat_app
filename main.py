@@ -70,3 +70,12 @@ def form():
         print("This is the ciphertext:\n" + str(fCiph.getvalue()))
         messages.append(str(fCiph.getvalue()))
         print('messages', messages)
+        print('kkkkkkkkkkkkkkkkkkkk')
+        # get ciphertext length
+        ctlen = len(fCiph.getvalue())
+
+        # go back to the start of the ciphertext stream
+        fCiph.seek(0)
+
+        # decrypt stream
+        pyAesCrypt.decryptStream(fCiph, fDec, password, bufferSize, ctlen)
