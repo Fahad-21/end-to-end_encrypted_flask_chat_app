@@ -59,3 +59,6 @@ def form():
 
         # initialize ciphertext binary stream
         fCiph = k.BytesIO()
+
+        # initialize decrypted binary stream
+        fDec = k.BytesIO()
