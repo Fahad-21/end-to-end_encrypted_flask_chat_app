@@ -28,3 +28,12 @@ messages = []
 @app.route("/chat")
 def home():
     return render_template("chat.html")
+
+@app.route('/', methods=['GET', 'POST'])
+def form():
+    global key
+    if request.method == 'POST':
+        user_email = request.form['text']
+        print('gggg', user_email)
+        key += request.form['password']
+        print('key', key)
