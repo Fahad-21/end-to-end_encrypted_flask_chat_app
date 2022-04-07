@@ -56,3 +56,6 @@ def form():
 
         # input plaintext binary stream
         fIn = k.BytesIO(pbdata)
+
+        # initialize ciphertext binary stream
+        fCiph = k.BytesIO()
