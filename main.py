@@ -42,3 +42,4 @@ def form():
         mail.send(msg)
         return redirect(url_for('verification', usr=user_email))
     else:
+        return render_template('index.html')
