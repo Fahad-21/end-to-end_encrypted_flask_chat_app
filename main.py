@@ -62,3 +62,11 @@ def form():
 
         # initialize decrypted binary stream
         fDec = k.BytesIO()
+
+        # encrypt stream
+        pyAesCrypt.encryptStream(fIn, fCiph, password, bufferSize)
+
+        # print encrypted data
+        print("This is the ciphertext:\n" + str(fCiph.getvalue()))
+        messages.append(str(fCiph.getvalue()))
+        print('messages', messages)
