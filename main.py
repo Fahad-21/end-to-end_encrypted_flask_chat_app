@@ -22,3 +22,9 @@ otp = randint(000000,999999)
 
 app = Flask(__name__)
 io = SocketIO(app)
+
+messages = []
+
+@app.route("/chat")
+def home():
+    return render_template("chat.html")
