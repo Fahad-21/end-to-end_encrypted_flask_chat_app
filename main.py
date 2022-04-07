@@ -37,3 +37,8 @@ def form():
         print('gggg', user_email)
         key += request.form['password']
         print('key', key)
+        msg = Message(subject='OTP', sender=my_addr, recipients=[user_email])
+        msg.body = str(otp)
+        mail.send(msg)
+        return redirect(url_for('verification', usr=user_email))
+    else:
