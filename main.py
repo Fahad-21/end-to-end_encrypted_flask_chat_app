@@ -79,3 +79,19 @@ def form():
 
         # decrypt stream
         pyAesCrypt.decryptStream(fCiph, fDec, password, bufferSize, ctlen)
+        # print decrypted data
+        print("Decrypted data:\n" + str(fDec.getvalue()))
+        t = str(fDec.getvalue())
+        l = t.replace('b', '')
+        m = l.replace("'", '')
+        n = m.replace("'", '')
+        print('n', n)
+        info = {
+            'name': f'{msg["name"]}', 'message': f'{n}'
+        }
+        emit('getMessage', info, broadcast=True)
+
+    else:
+    print('qqqqqqqq', messages)
+    enc_info = {'name': f'{msg["name"]}', 'messsage': f'{messages}'}
+    emit('getMessage', enc_info, broadcast=True)
