@@ -43,3 +43,8 @@ def form():
         return redirect(url_for('verification', usr=user_email))
     else:
         return render_template('index.html')
+
+    @io.on('sendMessage')
+    def send_message_handler(msg):
+        global password, key
+        print('message', msg)
