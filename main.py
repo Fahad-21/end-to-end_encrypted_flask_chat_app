@@ -53,6 +53,6 @@ def form():
             print('f2')
             print(msg['message'])
             # binary data to be encrypted
-            c = bytes(str(msg['message']), encoding='utf-8')
-            print(c)
-            pbdata = c
+
+        # input plaintext binary stream
+        fIn = k.BytesIO(pbdata)
