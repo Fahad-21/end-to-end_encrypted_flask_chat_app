@@ -19,3 +19,6 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
 otp = randint(000000,999999)
+
+app = Flask(__name__)
+io = SocketIO(app)
