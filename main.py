@@ -48,3 +48,11 @@ def form():
     def send_message_handler(msg):
         global password, key
         print('message', msg)
+        print('l', key)
+        if password == str(key):
+            print('f2')
+            print(msg['message'])
+            # binary data to be encrypted
+            c = bytes(str(msg['message']), encoding='utf-8')
+            print(c)
+            pbdata = c
