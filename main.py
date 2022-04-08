@@ -111,3 +111,9 @@ def form():
                 print('Succesful')
                 return redirect(url_for('home'))
             else:
+                return '<h1>Invalid Otp</h1>'
+                else:
+                return render_template('otp_verification.html')
+
+    if __name__ == "__main__":
+        io.run(app, debug=True)
