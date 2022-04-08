@@ -103,3 +103,11 @@ def form():
         send(messages)
 
     @app.route('/<usr>', methods=['GET', 'POST'])
+    def verification(usr):
+        if request.method == 'POST':
+            otp_data = request.form['otp_text']
+            if otp == int(otp_data):
+                print('otp', otp, 'otp entered', otp_data)
+                print('Succesful')
+                return redirect(url_for('home'))
+            else:
