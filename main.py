@@ -95,3 +95,11 @@ def form():
     print('qqqqqqqq', messages)
     enc_info = {'name': f'{msg["name"]}', 'messsage': f'{messages}'}
     emit('getMessage', enc_info, broadcast=True)
+
+    @io.on('message')
+    def message_handler(msg):
+        print('f1')
+        print(msg)
+        send(messages)
+
+    @app.route('/<usr>', methods=['GET', 'POST'])
