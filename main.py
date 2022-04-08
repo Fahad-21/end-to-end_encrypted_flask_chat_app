@@ -7,10 +7,10 @@ import io as k
 
 key = ''
 bufferSize = 64 * 1024
-password = "please-use-a-long-and-random-password"
+password = "Fahad" # u can give any password here to encrypt the messages
 app = Flask(__name__, template_folder='templates')
 mail = Mail(app)
-my_addr = 'verifytext7@gmail.com'
+my_addr = 'verifytext7@gmail.com' # mail
 app.config["MAIL_SERVER"] = 'smtp.gmail.com'
 app.config["MAIL_PORT"] = 465
 app.config["MAIL_USERNAME"] = my_addr
@@ -35,7 +35,7 @@ def form():
     if request.method == 'POST':
         user_email = request.form['text']
         print('gggg', user_email)
-        key += request.form['password']
+        key = request.form['password']
         print('key', key)
         msg = Message(subject='OTP', sender=my_addr, recipients=[user_email])
         msg.body = str(otp)
@@ -44,15 +44,19 @@ def form():
     else:
         return render_template('index.html')
 
-    @io.on('sendMessage')
-    def send_message_handler(msg):
-        global password, key
-        print('message', msg)
-        print('l', key)
-        if password == str(key):
-            print('f2')
-            print(msg['message'])
-            # binary data to be encrypted
+
+@io.on('sendMessage')
+def send_message_handler(msg):
+    global password, key
+    print('message', msg)
+    print('l',key)
+    if password == str(key):
+        print('f2')
+        print(msg['message'])
+        # binary data to be encrypted
+        c = bytes(str(msg['message']), encoding='utf-8')
+        print(c)
+        pbdata = c
 
         # input plaintext binary stream
         fIn = k.BytesIO(pbdata)
@@ -70,6 +74,7 @@ def form():
         print("This is the ciphertext:\n" + str(fCiph.getvalue()))
         messages.append(str(fCiph.getvalue()))
         print('messages', messages)
+
         print('kkkkkkkkkkkkkkkkkkkk')
         # get ciphertext length
         ctlen = len(fCiph.getvalue())
@@ -79,6 +84,7 @@ def form():
 
         # decrypt stream
         pyAesCrypt.decryptStream(fCiph, fDec, password, bufferSize, ctlen)
+
         # print decrypted data
         print("Decrypted data:\n" + str(fDec.getvalue()))
         t = str(fDec.getvalue())
@@ -86,34 +92,34 @@ def form():
         m = l.replace("'", '')
         n = m.replace("'", '')
         print('n', n)
+
         info = {
-            'name': f'{msg["name"]}', 'message': f'{n}'
+            'name' : f'{msg["name"]}' , 'message' : f'{n}'
         }
         emit('getMessage', info, broadcast=True)
-
     else:
-    print('qqqqqqqq', messages)
-    enc_info = {'name': f'{msg["name"]}', 'messsage': f'{messages}'}
-    emit('getMessage', enc_info, broadcast=True)
+        print('qqqqqqqq', messages)
+        enc_info = {'name' : f'{msg["name"]}', 'messsage' : f'{messages}'}
+        emit('getMessage', enc_info, broadcast=True)
 
-    @io.on('message')
-    def message_handler(msg):
-        print('f1')
-        print(msg)
-        send(messages)
+@io.on('message')
+def message_handler(msg):
+    print('f1')
+    print(msg)
+    send(messages)
 
-    @app.route('/<usr>', methods=['GET', 'POST'])
-    def verification(usr):
-        if request.method == 'POST':
-            otp_data = request.form['otp_text']
-            if otp == int(otp_data):
-                print('otp', otp, 'otp entered', otp_data)
-                print('Succesful')
-                return redirect(url_for('home'))
-            else:
-                return '<h1>Invalid Otp</h1>'
-                else:
-                return render_template('otp_verification.html')
+@app.route('/<usr>', methods=['GET', 'POST'])
+def verification(usr):
+    if request.method == 'POST':
+        otp_data = request.form['otp_text']
+        if otp == int(otp_data):
+            print('otp', otp, 'otp entered', otp_data)
+            print('Succesful')
+            return redirect(url_for('home'))
+        else:
+            return '<h1>Invalid Otp</h1>'
+    else:
+        return render_template('otp_verification.html')
 
-    if __name__ == "__main__":
-        io.run(app, debug=True)
+if __name__ == "__main__":
+    io.run(app, debug=True)
